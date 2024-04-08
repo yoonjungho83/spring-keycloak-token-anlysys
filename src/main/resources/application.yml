@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: keycloak-demo
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://${keycloak.domain}/realms/${keycloak.realm}
+
+          
+jwt:
+  auth:
+    converter:
+      resource-id: authenticationClientId
+      
+app:
+  cors:
+    allowed-origins: http://localhost:3002 , http://localhost:3000 , http://localhost:8000
+    
+keycloak:
+  realm: oauth2-demo-realm
+  domain: localhost:8180
+  adminClientId: oauth2-demo2
+  adminClientSecret: asdf
+#  adminClientId: spring-demo-client
+#  adminClientSecret: VBzjYfzBlb7ZxffGw1u43DHesHtuUMrZ
+  client: authenticationClientId
+  urls:
+    auth: http://${keycloak.domain}    
+    userinfo : /realms/oauth2-demo-realm/protocol/openid-connect/userinfo
